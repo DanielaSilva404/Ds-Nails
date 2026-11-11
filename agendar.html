@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agendar horário | DS Nails</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="border-bottom">
+    <nav class="navbar navbar-expand-md container" aria-label="Menu principal">
+      <a class="navbar-brand logo fs-4" href="index.html">DS Nails</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="menu">
+        <ul class="navbar-nav gap-md-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="agendar.html">Agendar</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="container py-4">
+
+    <ol class="etapas list-unstyled d-flex gap-3 flex-wrap mb-4" aria-label="Etapas do agendamento">
+      <li class="ind ativa" aria-current="step"><span class="num">1</span> Serviço, dia e horário</li>
+      <li class="ind"><span class="num">2</span> Seus dados</li>
+      <li class="ind"><span class="num">3</span> Confirmação</li>
+    </ol>
+
+    <section id="etapa1">
+      <p class="eyebrow">Reserve seu momento Bella</p>
+      <h1 id="titulo1" tabindex="-1">Agende seu horário</h1>
+      <p class="text-muted">Escolha o cuidado que combina com você, o dia e o melhor horário.</p>
+
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="painel h-100">
+            <h2 class="h5">01 · Escolha seu serviço</h2>
+            <fieldset>
+              <legend class="visually-hidden">Serviço</legend>
+              <div id="servicos" class="d-grid gap-2"></div>
+            </fieldset>
+            <p class="small text-muted mt-3 mb-0"><i class="bi bi-heart text-rosa"></i> Um atendimento exclusivo, pensado para você.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="painel h-100">
+            <h2 class="h5">02 · Escolha o dia e o horário</h2>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <button type="button" class="btn btn-sm" id="anterior" aria-label="Mês anterior"><i class="bi bi-chevron-left"></i></button>
+                  <strong id="mesTitulo" aria-live="polite"></strong>
+                  <button type="button" class="btn btn-sm" id="proximo" aria-label="Próximo mês"><i class="bi bi-chevron-right"></i></button>
+                </div>
+                <div class="grade small text-muted" aria-hidden="true">
+                  <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+                </div>
+                <div class="grade" id="dias"></div>
+                <p class="small text-muted mt-2">Dia selecionado · datas em cinza indisponíveis</p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="h6" id="diaTitulo" aria-live="polite">Selecione um dia</h3>
+                <div class="horas" id="horas"></div>
+              </div>
+            </div>
+            <p class="aviso mt-4 mb-0"><i class="bi bi-info-circle text-rosa"></i> Os horários consideram a duração do serviço. A confirmação acontece na próxima etapa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="barra mt-4" aria-live="polite">
+        <div><strong id="barraTitulo">Selecione um serviço</strong><br><small id="barraSub">Escolha também o dia e o horário</small></div>
+        <button type="button" class="btn btn-rosa" id="continuar" disabled>Continuar <i class="bi bi-arrow-right"></i></button>
+      </div>
+    </section>
+
+    <section id="etapa2" hidden>
+      <p class="eyebrow">Falta pouco para o seu momento</p>
+      <h1 id="titulo2" tabindex="-1">Finalize seu agendamento</h1>
+      <p class="text-muted">Preencha seus dados e confira os detalhes. Vai ser um prazer receber você.</p>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <form id="form" class="painel" novalidate>
+            <h2 class="h5">Como podemos chamar você?</h2>
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome completo *</label>
+              <input id="nome" class="form-control" autocomplete="name" required aria-required="true">
+              <div class="invalid-feedback">Informe seu nome completo.</div>
+            </div>
+            <div class="mb-3">
+              <label for="tel" class="form-label">Telefone *</label>
+              <input id="tel" type="tel" class="form-control" autocomplete="tel" inputmode="numeric"
+                     maxlength="15" placeholder="(19) 99999-9999" required aria-required="true" aria-describedby="telAjuda">
+              <div id="telAjuda" class="form-text">Informe seu celular com DDD para contato sobre o atendimento.</div>
+              <div class="invalid-feedback">Digite um telefone válido com DDD.</div>
+            </div>
+            <p class="small text-muted mb-0"><i class="bi bi-lock text-rosa"></i> Seus dados serão usados apenas para organizar seu agendamento e entrar em contato sobre o serviço.</p>
+          </form>
+          <p class="aviso mt-3"><i class="bi bi-heart text-rosa"></i> <span><strong>Sua pausa merece tranquilidade.</strong><br>Procure chegar 5 minutos antes do horário. Se precisar mudar seus planos, avise a equipe com antecedência.</span></p>
+          <button type="button" class="btn btn-link px-0" id="voltar"><i class="bi bi-arrow-left"></i> Voltar para serviço, dia e horário</button>
+        </div>
+
+        <div class="col-lg-5">
+          <aside class="painel fundo-claro">
+            <h2 class="h5">Seu momento de cuidado</h2>
+            <p class="mb-1"><strong class="res-nome"></strong></p>
+            <p class="mb-1"><i class="bi bi-calendar2 text-rosa"></i> <span class="res-data"></span></p>
+            <p><i class="bi bi-clock text-rosa"></i> <span class="res-hora"></span></p>
+            <p class="d-flex justify-content-between align-items-baseline border-top pt-3">Valor total <strong class="res-preco preco"></strong></p>
+            <p class="small text-muted">Pagamento no salão, no dia do atendimento.</p>
+            <button type="submit" form="form" class="btn btn-rosa w-100">Confirmar agendamento <i class="bi bi-check2"></i></button>
+            <p class="small text-muted text-center mt-3 mb-0">Ao confirmar, seu horário será reservado. Não é necessário pagar agora.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="etapa3" hidden>
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <p class="eyebrow">Horário confirmado</p>
+          <h1 id="titulo3" tabindex="-1">Seu agendamento foi realizado com sucesso! Aguardamos você!</h1>
+          <p class="text-muted">Obrigada por escolher a DS Nails. Seu momento de cuidado já tem dia e hora para acontecer.</p>
+          <p class="aviso"><i class="bi bi-heart text-rosa"></i> Chegue 5 minutos antes e aproveite sua pausa. Se precisar reagendar, fale com a equipe do salão.</p>
+          <a href="index.html" class="btn btn-rosa me-2"><i class="bi bi-arrow-left"></i> Voltar ao início</a>
+          <button type="button" class="btn btn-outline-secondary" id="novo">Novo agendamento <i class="bi bi-calendar2"></i></button>
+          <p class="assinatura mt-4">Com carinho, DS Nails.</p>
+        </div>
+        <div class="col-lg-6">
+          <article class="painel">
+            <p class="small text-rosa mb-2"><i class="bi bi-check-circle"></i> Agendamento confirmado</p>
+            <h2 class="h5">Seu momento está reservado</h2>
+            <p class="mb-1"><strong class="res-nome"></strong></p>
+            <p class="mb-1"><i class="bi bi-calendar2 text-rosa"></i> <span class="res-data"></span></p>
+            <p><i class="bi bi-clock text-rosa"></i> <span class="res-hora"></span></p>
+            <p class="d-flex justify-content-between align-items-baseline border-top pt-3">Valor total <strong class="res-preco preco"></strong></p>
+            <p class="small text-muted">Pagamento no salão, no dia do atendimento.</p>
+            <p class="small mb-0 border-top pt-3"><i class="bi bi-person text-rosa"></i> <span id="cliente"></span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center small text-muted py-4">© 2026 DS Nails. Feito para cuidar de você.</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
